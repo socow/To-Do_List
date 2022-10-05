@@ -1,7 +1,8 @@
 import React, { useState } from "react";
-import * as S from "./Login.Style.js";
 import { useNavigate } from "react-router-dom";
 import { API } from "../../config.js";
+import * as S from "./Login.Style.js";
+
 export default function Login() {
   const [inputValue, setInputValue] = useState({ email: "", password: "" });
 
@@ -12,6 +13,7 @@ export default function Login() {
   };
 
   const navigate = useNavigate();
+
   const goToSignup = (e) => {
     e.preventDefault();
     navigate(`/SignUp`);
@@ -41,12 +43,12 @@ export default function Login() {
   return (
     <S.login>
       <S.loginForm onSubmit={handleRequest}>
-        <S.titie>Pre-On-boarding</S.titie>
+        <S.titie>로그인</S.titie>
         <S.emailWrap>
           <S.email
             type="email"
             name="email"
-            placeholder="이메일을 입력해주세요"
+            placeholder="이메일"
             value={inputValue.email}
             onChange={handleChange}
           />
@@ -55,7 +57,7 @@ export default function Login() {
           <S.password
             type="password"
             name="password"
-            placeholder="비밀번호를 입력해주세요"
+            placeholder="비밀번호"
             value={inputValue.password}
             onChange={handleChange}
           />

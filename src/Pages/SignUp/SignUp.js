@@ -1,12 +1,13 @@
 import React, { useState } from "react";
-import * as S from "./SignUp.Style.js";
 import { useNavigate } from "react-router-dom";
 import { API } from "../../config.js";
+import * as S from "./SignUp.Style.js";
 
 export default function SignUp() {
   const [inputValue, setInputValue] = useState({ email: "", password: "" });
 
   const navigate = useNavigate();
+
   const goToLogin = (e) => {
     e.preventDefault();
     navigate(`/`);
@@ -20,8 +21,9 @@ export default function SignUp() {
 
   const handleSubmit = (e) => {
     const { email, password } = inputValue;
-    console.log(email);
+
     e.preventDefault();
+
     if (email === "" && password === "") {
       return alert("필수 입력 항목입니다.");
     } else if (!email.includes("@")) {
@@ -52,12 +54,12 @@ export default function SignUp() {
   return (
     <S.signup>
       <S.signupForm onSubmit={handleSubmit}>
-        <S.titie>Pre-On-boarding</S.titie>
+        <S.titie>회원가입</S.titie>
         <S.emailWrap>
           <S.email
             type="email"
             name="email"
-            placeholder="이메일"
+            placeholder="이메일을 입력해주세요"
             value={inputValue.email}
             onChange={handleChange}
           />
@@ -66,7 +68,7 @@ export default function SignUp() {
           <S.password
             type="password"
             name="password"
-            placeholder="비밀번호"
+            placeholder="비밀번호를 입력해주세요"
             value={inputValue.password}
             onChange={handleChange}
           />

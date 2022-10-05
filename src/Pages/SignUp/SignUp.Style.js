@@ -6,17 +6,20 @@ export const signup = styled.div`
   justify-content: center;
   width: 100%;
   height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
 `;
 
 export const signupForm = styled.form`
-  border: 2px solid black;
   background-color: #ebe4f9;
+  border-radius: 5px;
+  width: 33%;
+  height: 50vh;
 `;
 
 export const titie = styled.div`
   text-align: center;
-  margin: 10px;
-  font-size: 30px;
+  margin: 35px;
+  font-size: 40px;
 `;
 
 export const emailWrap = styled.div`
@@ -32,8 +35,14 @@ export const passwordWrap = styled.div`
   justify-content: center;
   padding: 3px;
 `;
-export const email = styled.input``;
-export const password = styled.input``;
+export const email = styled.input`
+  height: 30px;
+  width: 70%;
+`;
+export const password = styled.input`
+  height: 30px;
+  width: 70%;
+`;
 
 export const buttonWrap = styled.div`
   display: flex;
@@ -42,7 +51,20 @@ export const buttonWrap = styled.div`
   justify-content: center;
 `;
 export const loginButton = styled.button`
+  height: 30px;
+  width: 70%;
   padding: 5px 36px;
+  margin: 5px;
+  background-color: #9563fb;
+  border: none;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 600;
+`;
+export const SignupButton = styled.button`
+  height: 30px;
+  width: 70%;
+  padding: 5px 30px;
   margin: 5px;
   background-color: #9563fb;
   border: none;
@@ -53,13 +75,4 @@ export const loginButton = styled.button`
   &:disabled {
     opacity: 0.5;
   }
-`;
-export const SignupButton = styled.button`
-  padding: 5px 30px;
-  margin: 5px;
-  background-color: #9563fb;
-  border: none;
-  cursor: pointer;
-  font-size: 12px;
-  font-weight: 600;
 `;
