@@ -1,6 +1,7 @@
-const URL = `http://ec2-3-38-135-202.ap-northeast-2.compute.amazonaws.com:8000`;
+const URL = `https://pre-onboarding-selection-task.shop/`;
 
 export const API = {
-  Login: `${URL}/auth/signin`,
-  Signup: `${URL}/auth/signup`,
+  Login: `${URL}auth/signin`,
+  Signup: `${URL}auth/signup`,
+  Todo: `${URL}todos`,
 };

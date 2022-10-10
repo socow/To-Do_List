@@ -1,18 +1,23 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { API } from "../../config.js";
 import * as S from "./Login.Style.js";
 
 export default function Login() {
+  const navigate = useNavigate();
   const [inputValue, setInputValue] = useState({ email: "", password: "" });
+
+  useEffect(() => {
+    if (localStorage.getItem("token")) {
+      navigate(`/todo`);
+    }
+  });
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setInputValue({ ...inputValue, [name]: value });
     e.preventDefault();
   };
-
-  const navigate = useNavigate();
 
   const goToSignup = (e) => {
     e.preventDefault();
