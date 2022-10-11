@@ -7,6 +7,7 @@ export default function TodoList({ id, isCompleted, todo, userId, getTodo }) {
   const [isUpdata, setIsUpdata] = useState(false);
   const [todoValue, setTodoValue] = useState({ todo: "" });
   const [before, setBefore] = useState(isCompleted);
+
   const handleChange = (e) => {
     const { value } = e.target;
     setTodoValue({ ...todoValue, todo: value });
@@ -53,7 +54,7 @@ export default function TodoList({ id, isCompleted, todo, userId, getTodo }) {
         )}
 
         {!isUpdata ? (
-          <S.todo>{todo}</S.todo>
+          <S.todo check={check}>{todo}</S.todo>
         ) : (
           <S.todoInput value={todoValue.todo} onChange={handleChange} />
         )}

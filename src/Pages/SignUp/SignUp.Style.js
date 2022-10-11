@@ -6,14 +6,14 @@ export const signup = styled.div`
   justify-content: center;
   width: 100%;
   height: 100vh;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: ${({ theme }) => theme.gray};
 `;
 
 export const signupForm = styled.form`
   width: 33%;
   height: 50vh;
   border-radius: 5px;
-  background-color: #ffff;
+  background-color: ${({ theme }) => theme.white};
 `;
 
 export const titie = styled.div`
@@ -55,7 +55,7 @@ export const loginButton = styled.button`
   width: 70%;
   padding: 5px 36px;
   margin: 5px;
-  background-color: #7dc9fc;
+  background-color: ${({ theme }) => theme.blue};
   border: none;
   cursor: pointer;
   font-size: 12px;
@@ -66,7 +66,7 @@ export const SignupButton = styled.button`
   width: 70%;
   padding: 5px 30px;
   margin: 5px;
-  background-color: #7dc9fc;
+  background-color: ${({ theme }) => theme.blue};
   border: none;
   cursor: pointer;
   font-size: 12px;

@@ -7,7 +7,7 @@ export const todoWrapper = styled.div`
   flex-direction: column;
   width: 100%;
   height: 100vh;
-  background-color: #ffff;
+  background-color: ${({ theme }) => theme.white};
 `;
 
 export const todoTitle = styled.div`
@@ -16,7 +16,7 @@ export const todoTitle = styled.div`
 `;
 
 export const todoBox = styled.div`
-  background-color: #ffff;
+  background-color: ${({ theme }) => theme.white};
   border-radius: 5px;
 `;
 
@@ -35,12 +35,12 @@ export const postButton = styled.button`
   width: 20%;
   height: 30px;
   margin-left: 32px;
-  background-color: #7dc9fc;
+  background-color: ${({ theme }) => theme.blue};
   border: none;
   border-radius: 3px;
   :hover {
     cursor: pointer;
-    background-color: #1e90ff;
+    background-color: ${({ theme }) => theme.deepBlue};
   }
 `;
 

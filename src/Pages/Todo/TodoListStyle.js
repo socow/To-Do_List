@@ -17,11 +17,12 @@ export const checkBox = styled.div`
   text-align: center;
 `;
 
-export const todo = styled.div`
+export const todo = styled.p`
   width: 80%;
   margin-left: 8px;
   font-size: 16px;
-  font-weight: 600;
+  font-weight: ${(props) => (props.check ? " 500" : "600")};
+  text-decoration: ${(props) => (props.check ? " line-through" : "none")};
 `;
 
 export const todoInput = styled.input`
@@ -31,7 +32,7 @@ export const todoInput = styled.input`
 export const todoModify = styled.button`
   width: 100px;
   height: 25px;
-  background-color: #ffff;
+  background-color: ${({ theme }) => theme.white};
   border: none;
   font-size: 16px;
   font-weight: 600;
@@ -40,7 +41,7 @@ export const todoModify = styled.button`
 export const delBtn = styled.button`
   width: 60px;
   height: 25px;
-  background-color: #ffff;
+  background-color: ${({ theme }) => theme.white};
   color: red;
   border: none;
   font-size: 16px;
