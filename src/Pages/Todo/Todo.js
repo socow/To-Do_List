@@ -66,13 +66,12 @@ export default function Todo() {
       </S.postInputWrapper>
       <S.todoBox>
         <S.todoListWrapper>
-          {todoData?.map(({ id, isCompleted, todo, userId }) => (
+          {todoData?.map(({ id, isCompleted, todo }) => (
             <TodoList
               key={id}
               id={id}
               isCompleted={isCompleted}
               todo={todo}
-              userId={userId}
               getTodo={getTodo}
             />
           ))}
