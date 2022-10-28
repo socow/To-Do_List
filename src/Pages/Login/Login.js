@@ -1,17 +1,24 @@
 import React, { useEffect, useState } from "react";
+import { loginRequest } from "../../api/login";
 import { useNavigate } from "react-router-dom";
-import { API } from "../../config.js";
 import * as S from "./Login.Style.js";
 
 export default function Login() {
   const navigate = useNavigate();
   const [inputValue, setInputValue] = useState({ email: "", password: "" });
+  const email = inputValue.email;
+  const password = inputValue.password;
 
   useEffect(() => {
     if (localStorage.getItem("token")) {
       navigate(`/todo`);
     }
-  });
+  }, [navigate]);
+
+  const goToSignup = (e) => {
+    e.preventDefault();
+    navigate(`/SignUp`);
+  };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -19,35 +26,13 @@ export default function Login() {
     e.preventDefault();
   };
 
-  const goToSignup = (e) => {
+  const loginsubmit = (e) => {
     e.preventDefault();
-    navigate(`/SignUp`);
-  };
-
-  const handleRequest = (e) => {
-    e.preventDefault();
-    fetch(API.Login, {
-      method: "POST",
-      headers: { "Content-Type": " application/json" },
-      body: JSON.stringify({
-        email: inputValue.email,
-        password: inputValue.password,
-      }),
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        if (data.access_token) {
-          localStorage.setItem("token", data.access_token);
-          alert("로그인이 완료되었습니다");
-          navigate(`/Todo`);
-        } else {
-          alert("아이디 또는 비밀번호를 확인해주세요");
-        }
-      });
+    loginRequest(email, password);
   };
   return (
     <S.login>
-      <S.loginForm onSubmit={handleRequest}>
+      <S.loginForm onSubmit={loginsubmit}>
         <S.titie>로그인</S.titie>
         <S.emailWrap>
           <S.email
