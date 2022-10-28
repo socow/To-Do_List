@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-import { API } from "../../config.js";
 import * as S from "./TodoListStyle";
+import { updateTodoRequest, deleteTodoRequsest } from "../../api/todo";
 
 export default function TodoList({ id, isCompleted, todo, getTodo }) {
   const [check, setcheck] = useState(isCompleted);
   const [isUpdata, setIsUpdata] = useState(false);
-  const [todoValue, setTodoValue] = useState({ todo: "" });
+  const [todoValue, setTodoValue] = useState("");
   const [before, setBefore] = useState(isCompleted);
 
   const handleChange = (e) => {
@@ -24,31 +24,13 @@ export default function TodoList({ id, isCompleted, todo, getTodo }) {
     setIsUpdata(false);
     setcheck(before);
   };
-  const updateTodo = () => {
-    setIsUpdata(false);
-    fetch(`${API.Todo}/${id}`, {
-      method: "PUT",
-      headers: {
-        Authorization: `Bearer ${localStorage.getItem("token")}`,
-        "Content-Type": " Application/json",
-      },
-      body: JSON.stringify({
-        todo: todoValue.todo,
-        isCompleted: check,
-      }),
-    });
-    setTimeout(() => {
-      getTodo();
-    }, 200);
+
+  const updateRequsest = () => {
+    updateTodoRequest(setIsUpdata, id, todo, { isCompleted: check });
   };
 
-  const deleteTodo = () => {
-    fetch(`${API.Todo}/${id}`, {
-      method: "DELETE",
-      headers: {
-        Authorization: `Bearer ${localStorage.getItem("token")}`,
-      },
-    });
+  const deleteRequsest = () => {
+    deleteTodoRequsest(id);
     setTimeout(() => {
       getTodo();
     }, 200);
@@ -71,11 +53,11 @@ export default function TodoList({ id, isCompleted, todo, getTodo }) {
         {!isUpdata ? (
           <>
             <S.todoModify onClick={modifyContent}>수정</S.todoModify>
-            <S.delBtn onClick={deleteTodo}>삭제</S.delBtn>
+            <S.delBtn onClick={deleteRequsest}>삭제</S.delBtn>
           </>
         ) : (
           <>
-            <S.todoModify onClick={updateTodo}>수정완료</S.todoModify>
+            <S.todoModify onClick={updateRequsest}>수정완료</S.todoModify>
             <S.delBtn onClick={deleteContent}>취소</S.delBtn>
           </>
         )}
