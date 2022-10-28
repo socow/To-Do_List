@@ -1,15 +1,16 @@
 import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Login from "./Pages/Login/Login.js";
-import SignUp from "./Pages/SignUp/SignUp.js";
-import Todo from "./Pages/Todo/Todo.js";
+import LoginPage from "./Pages/LoginPage.jsx";
+import SignUpPage from "./Pages/SignupPage.jsx";
+import TodoPage from "./Pages/TodoPage.jsx";
+
 function Router() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Login />} />
-        <Route path="/signup" element={<SignUp />} />
-        <Route path="/todo" element={<Todo />} />
+        <Route path="/" element={<LoginPage />} />
+        <Route path="/signup" element={<SignUpPage />} />
+        <Route path="/todo" element={<TodoPage />} />
       </Routes>
     </BrowserRouter>
   );
