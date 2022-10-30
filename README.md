@@ -18,8 +18,33 @@ $ npm start
 
 # 폴더 구조
 
-```bash
-![image](스크린샷 2022-10-29 오전 12.46.50.png)
+```
+
+📦 src
+┣ 📂apis
+┃  ┃ 📜 api.js
+┃  ┣ 📜 login.js
+┃  ┣ 📜 signup.js
+┃  ┗ 📜 todo.js
+┣ 📂components
+┃   ┣ 📜 Login.jsx
+┃   ┣ 📜 SignUp.jsx
+┃   ┣ 📜 Todo.jsx
+┃   ┗ 📜 TodoLIst.jsx
+┣ 📂pages
+┃  ┣ 📜 Loginpages.jsx
+┃  ┣ 📜 SignUppages.jsx
+┃  ┗ 📜 Todopages.jsx
+┣ 📂styles
+┃ ┣ 📜 GlobalStyle.js
+┃ ┗ 📜 theme.js
+┣ 📜 config.js
+┣ 📜 index.js
+┗ 📜 Router.js
+
+
+
+
 1. apis : api 통신 함수 관리
 2. Components : 공통된 컴포넌트 관리
 3. pages : 페이지 단위 컴포넌트 폴더
