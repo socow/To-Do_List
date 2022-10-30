@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { updateTodoRequest, deleteTodoRequsest } from "../apis/todo";
 import styled from "styled-components";
 
-export default function TodoList({ id, isCompleted, todo, getTodo }) {
+export default function TodoList({ id, isCompleted, getTodo, todo }) {
   const [check, setcheck] = useState(isCompleted);
   const [isUpdata, setIsUpdata] = useState(false);
   const [todoValue, setTodoValue] = useState("");
@@ -10,13 +10,13 @@ export default function TodoList({ id, isCompleted, todo, getTodo }) {
 
   const handleChange = (e) => {
     const { value } = e.target;
-    setTodoValue({ ...todoValue, todo: value });
+    setTodoValue(value);
     e.preventDefault();
   };
 
   const modifyContent = () => {
     setIsUpdata(true);
-    setTodoValue({ todo: todo });
+    setTodoValue(todo);
     setBefore(check);
   };
 
@@ -26,7 +26,12 @@ export default function TodoList({ id, isCompleted, todo, getTodo }) {
   };
 
   const updateRequsest = () => {
-    updateTodoRequest(setIsUpdata, id, todo, { isCompleted: check });
+    updateTodoRequest(setIsUpdata, id, todoValue, {
+      isCompleted: check,
+    });
+    setTimeout(() => {
+      getTodo();
+    }, 200);
   };
 
   const deleteRequsest = () => {
@@ -46,18 +51,18 @@ export default function TodoList({ id, isCompleted, todo, getTodo }) {
         )}
 
         {!isUpdata ? (
-          <todo check={check}>{todo}</todo>
+          <Todo check={check}>{todo}</Todo>
         ) : (
-          <todoInput value={todoValue.todo} onChange={handleChange} />
+          <TodoInput value={todoValue} onChange={handleChange} />
         )}
         {!isUpdata ? (
           <>
-            <todoModify onClick={modifyContent}>수정</todoModify>
-            <delBtn onClick={deleteRequsest}>삭제</delBtn>
+            <TodoModify onClick={modifyContent}>수정</TodoModify>
+            <DelBtn onClick={deleteRequsest}>삭제</DelBtn>
           </>
         ) : (
           <>
-            <todoModify onClick={updateRequsest}>수정완료</todoModify>
+            <TodoModify onClick={updateRequsest}>수정완료</TodoModify>
             <DelBtn onClick={deleteContent}>취소</DelBtn>
           </>
         )}
@@ -83,7 +88,7 @@ export const CheckBox = styled.div`
   text-align: center;
 `;
 
-export const todo = styled.p`
+export const Todo = styled.p`
   width: 80%;
   margin-left: 8px;
   font-size: 16px;
@@ -91,11 +96,11 @@ export const todo = styled.p`
   text-decoration: ${(props) => (props.check ? " line-through" : "none")};
 `;
 
-export const todoInput = styled.input`
+export const TodoInput = styled.input`
   width: 80%;
 `;
 
-export const todoModify = styled.button`
+export const TodoModify = styled.button`
   width: 100px;
   height: 25px;
   background-color: ${({ theme }) => theme.white};

@@ -1,37 +1,22 @@
-import React, { useEffect, useState } from "react";
-import TodoList from "./TodoList.jsx";
-import { todoRequest, createTodoRequest } from "../apis/todo";
+import React, { useEffect, useContext } from "react";
+import { TodoContext } from "../contexts/TodoStore";
+import TodoList from "./TodoList";
+
 import styled from "styled-components";
 
 export default function Todo() {
-  const [todoData, setTodoData] = useState();
-  const [todoValue, setTodoValue] = useState({ todo: "" });
-  const todo = todoValue.todo;
-
-  const getTodo = () => todoRequest(setTodoData);
+  const { todoData, handleChange, createTodoFunction, todoValue, getTodo } =
+    useContext(TodoContext);
 
   useEffect(() => {
     getTodo();
   }, []);
 
-  const handleChange = (e) => {
-    const { value } = e.target;
-    setTodoValue({ ...todoValue, todo: value });
-    e.preventDefault();
-  };
-
-  const createTodoFunction = () => {
-    createTodoRequest(todo, setTodoValue);
-    setTimeout(() => {
-      getTodo();
-    }, 200);
-  };
-
   return (
     <>
       <TodoTitle>To-Do List</TodoTitle>
       <PostInputWrapper>
-        <PostInput name="todo" value={todoValue.todo} onChange={handleChange} />
+        <PostInput name="todo" value={todoValue} onChange={handleChange} />
         <PostButton onClick={createTodoFunction}>작성</PostButton>
       </PostInputWrapper>
       <TodoBox>

@@ -12,7 +12,7 @@ export const todoRequest = (setTodoData) => {
     });
 };
 
-export const createTodoRequest = (todo, setTodoValue) => {
+export const createTodoRequest = (todo, setTodoValue, setTodoData) => {
   fetch(API.Todo, {
     method: "POST",
     headers: {
@@ -22,15 +22,14 @@ export const createTodoRequest = (todo, setTodoValue) => {
     body: JSON.stringify({
       todo,
     }),
-  });
-
-  setTodoValue({ todo: "" });
+  }).then(() => todoRequest(setTodoData));
+  setTodoValue("");
 };
 
 export const updateTodoRequest = (
   setIsUpdata,
   id,
-  todo,
+  todoValue,
   { isCompleted: check }
 ) => {
   setIsUpdata(false);
@@ -41,7 +40,7 @@ export const updateTodoRequest = (
       "Content-Type": " Application/json",
     },
     body: JSON.stringify({
-      todo,
+      todo: todoValue,
       isCompleted: check,
     }),
   });

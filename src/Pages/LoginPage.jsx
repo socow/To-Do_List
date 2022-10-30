@@ -11,13 +11,10 @@ export default function LoginPage() {
       navigate(`/todo`);
     }
   }, [navigate]);
-  const goToSignup = (e) => {
-    e.preventDefault();
-    navigate(`/SignUp`);
-  };
+
   return (
     <LoginWrap>
-      <Login goToSignup={goToSignup} />
+      <Login />
     </LoginWrap>
   );
 }

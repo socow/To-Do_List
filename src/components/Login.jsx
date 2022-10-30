@@ -1,22 +1,11 @@
-import React, { useState } from "react";
-import { loginRequest } from "../apis/login";
+import React, { useContext } from "react";
+import { LoginContext } from "../contexts/LoginStore.js";
 import styled from "styled-components";
 
-export default function Login(goToSignup) {
-  const [inputValue, setInputValue] = useState({ email: "", password: "" });
-  const email = inputValue.email;
-  const password = inputValue.password;
+export default function Login() {
+  const { inputValue, loginsubmit, handleChange, goToSignup } =
+    useContext(LoginContext);
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setInputValue({ ...inputValue, [name]: value });
-    e.preventDefault();
-  };
-
-  const loginsubmit = (e) => {
-    e.preventDefault();
-    loginRequest(email, password);
-  };
   return (
     <LoginForm onSubmit={loginsubmit}>
       <Titie>로그인</Titie>
