@@ -1,17 +1,11 @@
-import { useNavigate } from "react-router-dom";
+import React from "react";
 import SignUp from "../components/Signup";
 import styled from "styled-components";
 
 export default function SignUpPage() {
-  const navigate = useNavigate();
-
-  const goToLogin = (e) => {
-    e.preventDefault();
-    navigate(`/`);
-  };
   return (
     <SignupWrap>
-      <SignUp goToLogin={goToLogin} />
+      <SignUp />
     </SignupWrap>
   );
 }

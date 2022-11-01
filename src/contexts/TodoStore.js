@@ -17,7 +17,7 @@ export const TodoStore = () => {
   };
 
   const createTodoFunction = () => {
-    createTodoRequest(todoValue, setTodoValue, setTodoData);
+    createTodoRequest(todoValue, setTodoValue, todoData, setTodoData);
   };
 
   return (

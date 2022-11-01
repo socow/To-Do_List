@@ -1,12 +1,18 @@
 import React, { useState } from "react";
 import { signupRequest } from "../apis/signup";
 import styled from "styled-components";
+import { useNavigate } from "react-router-dom";
 
-export default function SignUp(goToLogin) {
+export default function SignUp() {
   const [inputValue, setInputValue] = useState({ email: "", password: "" });
   const email = inputValue.email;
   const password = inputValue.password;
+  const navigate = useNavigate();
 
+  const goToLogin = (e) => {
+    e.preventDefault();
+    navigate(`/`);
+  };
   const handleChange = (e) => {
     const { name, value } = e.target;
     setInputValue({ ...inputValue, [name]: value });

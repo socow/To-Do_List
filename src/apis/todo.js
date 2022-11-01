@@ -1,29 +1,37 @@
-import { API } from "./api";
+import { instance } from "./api";
+
+const TODO_URL = "/todos";
 
 export const todoRequest = (setTodoData) => {
-  fetch(API.Todo, {
-    headers: {
-      Authorization: `Bearer ${localStorage.getItem("token")}`,
-    },
-  })
-    .then((res) => res.json())
-    .then((res) => {
-      setTodoData(res);
-    });
+  instance
+    .get(TODO_URL)
+    .then((res) => setTodoData(res.data))
+    .catch((error) => {});
 };
 
-export const createTodoRequest = (todo, setTodoValue, setTodoData) => {
-  fetch(API.Todo, {
-    method: "POST",
-    headers: {
-      Authorization: `Bearer ${localStorage.getItem("token")}`,
-      "Content-Type": " Application/json",
-    },
-    body: JSON.stringify({
+export const createTodoRequest = (
+  todo,
+  setTodoValue,
+  todoData,
+  setTodoData
+) => {
+  instance
+    .post(TODO_URL, {
       todo,
-    }),
-  }).then(() => todoRequest(setTodoData));
-  setTodoValue("");
+    })
+    .then((res) => {
+      setTodoData([
+        ...todoData,
+        {
+          id: res.data.id,
+          todo: res.data.todo,
+          isCompleted: res.data.isCompleted,
+          userId: res.data.userId,
+        },
+      ]);
+      setTodoValue("");
+    })
+    .catch((error) => {});
 };
 
 export const updateTodoRequest = (
@@ -33,24 +41,20 @@ export const updateTodoRequest = (
   { isCompleted: check }
 ) => {
   setIsUpdata(false);
-  fetch(`${API.Todo}/${id}`, {
-    method: "PUT",
-    headers: {
-      Authorization: `Bearer ${localStorage.getItem("token")}`,
-      "Content-Type": " Application/json",
-    },
-    body: JSON.stringify({
+  instance
+    .put(`${TODO_URL}/${id}`, {
       todo: todoValue,
       isCompleted: check,
-    }),
-  });
+    })
+    .catch((err) => console.error(err));
 };
 
 export const deleteTodoRequsest = (id) => {
-  fetch(`${API.Todo}/${id}`, {
-    method: "DELETE",
-    headers: {
-      Authorization: `Bearer ${localStorage.getItem("token")}`,
-    },
-  });
+  instance.delete(`${TODO_URL}/${id}`);
+  // fetch(`${API.Todo}/${id}`, {
+  //   method: "DELETE",
+  //   headers: {
+  //     Authorization: `Bearer ${localStorage.getItem("token")}`,
+  //   },
+  // });
 };
