@@ -2,7 +2,7 @@
 
 ## DEMO
 
-DEMO : [DEMO](https://dapper-paletas-87347a.netlify.app/)
+DEMO : [DEMO](https://stupendous-melomakarona-bf0278.netlify.app)
 
 # 프로젝트 설치 및 실행 방법
 
