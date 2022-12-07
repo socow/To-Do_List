@@ -10,7 +10,7 @@ export default function Todo() {
 
   useEffect(() => {
     getTodo();
-  }, []);
+  }, [getTodo]);
 
   return (
     <>
