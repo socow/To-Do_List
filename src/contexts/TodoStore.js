@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useCallback, useState } from "react";
 import { todoRequest, createTodoRequest } from "../apis/todo";
 import Todo from "../components/Todo";
 import TodoPage from "../Pages/TodoPage";
@@ -8,7 +8,7 @@ export const TodoStore = () => {
   const [todoData, setTodoData] = useState();
   const [todoValue, setTodoValue] = useState("");
 
-  const getTodo = () => todoRequest(setTodoData);
+  const getTodo = useCallback(() => todoRequest(setTodoData), [setTodoData]);
 
   const handleChange = (e) => {
     const { value } = e.target;
