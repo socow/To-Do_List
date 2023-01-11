@@ -2,7 +2,7 @@ import { instance } from "./api";
 
 const TODO_URL = "/todos";
 
-export const todoRequest = (setTodoData) => {
+export const todoRequest = (setTodoData: any) => {
   instance
     .get(TODO_URL)
     .then((res) => setTodoData(res.data))
@@ -10,10 +10,10 @@ export const todoRequest = (setTodoData) => {
 };
 
 export const createTodoRequest = (
-  todo,
-  setTodoValue,
-  todoData,
-  setTodoData
+  todo: any,
+  setTodoValue: any,
+  todoData: any,
+  setTodoData: any
 ) => {
   instance
     .post(TODO_URL, {
@@ -35,10 +35,10 @@ export const createTodoRequest = (
 };
 
 export const updateTodoRequest = (
-  setIsUpdata,
-  id,
-  todoValue,
-  { isCompleted: check }
+  setIsUpdata: any,
+  id: any,
+  todoValue: any,
+  { isCompleted: check }: any
 ) => {
   setIsUpdata(false);
   instance
@@ -49,7 +49,7 @@ export const updateTodoRequest = (
     .catch((err) => console.error(err));
 };
 
-export const deleteTodoRequsest = (id) => {
+export const deleteTodoRequsest = (id: number) => {
   instance.delete(`${TODO_URL}/${id}`);
   // fetch(`${API.Todo}/${id}`, {
   //   method: "DELETE",

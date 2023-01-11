@@ -1,9 +1,9 @@
 import React, { useContext } from "react";
-import { LoginContext } from "../contexts/LoginStore.js";
+import { LoginContext } from "src/contexts/LoginStore";
 import styled from "styled-components";
 
 export default function Login() {
-  const { inputValue, loginsubmit, handleChange, goToSignup } =
+  const { inputValue, loginsubmit, handleChange, goToSignup }: any =
     useContext(LoginContext);
 
   return (

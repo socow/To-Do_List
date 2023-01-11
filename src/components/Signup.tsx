@@ -9,17 +9,17 @@ export default function SignUp() {
   const password = inputValue.password;
   const navigate = useNavigate();
 
-  const goToLogin = (e) => {
+  const goToLogin = (e: React.MouseEvent) => {
     e.preventDefault();
     navigate(`/`);
   };
-  const handleChange = (e) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setInputValue({ ...inputValue, [name]: value });
     e.preventDefault();
   };
 
-  const signupSubmit = (e) => {
+  const signupSubmit = (e: React.SyntheticEvent) => {
     e.preventDefault();
     signupRequest(email, password);
   };

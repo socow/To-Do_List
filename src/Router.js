@@ -1,6 +1,6 @@
 import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import SignUpPage from "./Pages/SignupPage.jsx";
+import SignUpPage from "./Pages/SignupPage.tsx";
 import { LoginStore } from "./contexts/LoginStore";
 import { TodoStore } from "./contexts/TodoStore";
 

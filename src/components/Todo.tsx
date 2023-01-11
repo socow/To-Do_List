@@ -5,13 +5,23 @@ import TodoList from "./TodoList";
 import styled from "styled-components";
 
 export default function Todo() {
-  const { todoData, handleChange, createTodoFunction, todoValue, getTodo } =
-    useContext(TodoContext);
+  const {
+    todoData,
+    handleChange,
+    createTodoFunction,
+    todoValue,
+    getTodo,
+  }: any = useContext(TodoContext);
 
   useEffect(() => {
     getTodo();
   }, [getTodo]);
 
+  interface Todo {
+    id: number;
+    todo: string;
+    isCompleted: boolean;
+  }
   return (
     <>
       <TodoTitle>To-Do List</TodoTitle>
@@ -21,7 +31,7 @@ export default function Todo() {
       </PostInputWrapper>
       <TodoBox>
         <TodoListWrapper>
-          {todoData?.map(({ id, isCompleted, todo }) => (
+          {todoData?.map(({ id, isCompleted, todo }: Todo) => (
             <TodoList
               key={id}
               id={id}

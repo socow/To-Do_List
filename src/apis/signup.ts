@@ -2,7 +2,7 @@ import { instance } from "./api";
 
 const SIGNUP_URL = `/auth/signup`;
 
-export const signupRequest = (email, password) => {
+export const signupRequest = (email: string, password: string) => {
   if (email === "" && password === "") {
     return alert("필수 입력 항목입니다.");
   } else if (!email.includes("@")) {

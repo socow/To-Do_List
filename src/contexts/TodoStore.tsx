@@ -2,7 +2,15 @@ import React, { useCallback, useState } from "react";
 import { todoRequest, createTodoRequest } from "../apis/todo";
 import Todo from "../components/Todo";
 import TodoPage from "../Pages/TodoPage";
-export const TodoContext = React.createContext();
+
+interface Todos {
+  todoData: any;
+  handleChange: any;
+  createTodoFunction: any;
+  todoValue: string;
+  getTodo: any;
+}
+export const TodoContext = React.createContext<Todos | undefined>(undefined);
 
 export const TodoStore = () => {
   const [todoData, setTodoData] = useState();
@@ -10,7 +18,7 @@ export const TodoStore = () => {
 
   const getTodo = useCallback(() => todoRequest(setTodoData), [setTodoData]);
 
-  const handleChange = (e) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = e.target;
     setTodoValue(value);
     e.preventDefault();
@@ -30,9 +38,8 @@ export const TodoStore = () => {
         getTodo,
       }}
     >
-      <TodoPage>
-        <Todo />
-      </TodoPage>
+      <TodoPage />
+      <Todo />
     </TodoContext.Provider>
   );
 };

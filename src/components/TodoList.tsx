@@ -2,13 +2,20 @@ import React, { useState } from "react";
 import { updateTodoRequest, deleteTodoRequsest } from "../apis/todo";
 import styled from "styled-components";
 
-export default function TodoList({ id, isCompleted, getTodo, todo }) {
-  const [check, setcheck] = useState(isCompleted);
+interface Props {
+  id: number;
+  todo: string;
+  getTodo(): void;
+  isCompleted: boolean;
+}
+
+export default function TodoList({ id, isCompleted, getTodo, todo }: Props) {
+  const [check, setcheck] = useState<boolean>(isCompleted);
   const [isUpdata, setIsUpdata] = useState(false);
   const [todoValue, setTodoValue] = useState("");
   const [before, setBefore] = useState(isCompleted);
 
-  const handleChange = (e) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = e.target;
     setTodoValue(value);
     e.preventDefault();
@@ -78,7 +85,7 @@ export const TodoListWrap = styled.li`
   margin-top: 5px;
 `;
 
-export const CheckBox = styled.div`
+export const CheckBox = styled.div<{ check: boolean }>`
   width: 20px;
   height: 16px;
   background-color: ${(props) => (props.check ? " #7dc9fc" : "white")};
@@ -88,7 +95,7 @@ export const CheckBox = styled.div`
   text-align: center;
 `;
 
-export const Todo = styled.p`
+export const Todo = styled.p<{ check: boolean }>`
   width: 80%;
   margin-left: 8px;
   font-size: 16px;

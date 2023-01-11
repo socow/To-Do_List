@@ -12,9 +12,11 @@ export const instance = axios.create({
 instance.interceptors.request.use(
   function (config) {
     if (ACCESS_TOKEN) {
-      config.headers.Authorization = `Bearer ${ACCESS_TOKEN}`;
+      config.headers = { Authorization: `Bearer ${ACCESS_TOKEN}` };
     } else {
-      config.headers.Authorization = `Bearer ${localStorage.getItem("token")}`;
+      config.headers = {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      };
     }
     return config;
   },

@@ -2,7 +2,7 @@ import { instance } from "./api";
 
 const LOGIN_URL = `/auth/signin`;
 
-export const loginRequest = (email, password) => {
+export const loginRequest = (email: string, password: string) => {
   instance
     .post(LOGIN_URL, {
       email,
